@@ -1,0 +1,16 @@
+﻿using NDTuanShop.Data.Infrastructure;
+using NDTuanShop.Model.Models;
+
+namespace NDTuanShop.Data.Repositories
+{
+    public interface IFooterRepository : IRepository<Footer>
+    {
+    }
+
+    public class FooterRepository : RepositoryBase<Footer>, IFooterRepository
+    {
+        public FooterRepository(IDbFactory dbFactory) : base(dbFactory)
+        {
+        }
+    }
+}
