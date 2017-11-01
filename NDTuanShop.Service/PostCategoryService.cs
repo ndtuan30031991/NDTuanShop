@@ -2,6 +2,7 @@
 using NDTuanShop.Data.Repositories;
 using NDTuanShop.Model.Models;
 using System.Collections.Generic;
+using System;
 
 namespace NDTuanShop.Service
 {
@@ -18,6 +19,8 @@ namespace NDTuanShop.Service
         IEnumerable<PostCategory> GetAllByParentId(int parentId);
 
         PostCategory GetById(int id);
+
+        void Save();
     }
 
     public class PostCategoryService : IPostCategoryService
@@ -54,6 +57,11 @@ namespace NDTuanShop.Service
         public PostCategory GetById(int id)
         {
             return _postCategoryRepository.GetSingleById(id);
+        }
+
+        public void Save()
+        {
+            _unitOfWork.Commit();
         }
 
         public void Update(PostCategory postCategory)
