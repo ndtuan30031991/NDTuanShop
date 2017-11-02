@@ -1,27 +1,30 @@
-﻿using System;
-using System.Threading.Tasks;
-using Microsoft.Owin;
-using Owin;
-using Autofac;
+﻿using Autofac;
 using Autofac.Integration.Mvc;
-using System.Reflection;
-using NDTuanShop.Data.Infrastructure;
-using NDTuanShop.Data;
-using NDTuanShop.Data.Repositories;
-using NDTuanShop.Service;
-using System.Web.Mvc;
-using System.Web.Http;
 using Autofac.Integration.WebApi;
+using Microsoft.AspNet.Identity;
+using Microsoft.Owin;
+using Microsoft.Owin.Security.DataProtection;
+using NDTuanShop.Data;
+using NDTuanShop.Data.Infrastructure;
+using NDTuanShop.Data.Repositories;
+using NDTuanShop.Model.Models;
+using NDTuanShop.Service;
+using Owin;
+using System.Reflection;
+using System.Web;
+using System.Web.Http;
+using System.Web.Mvc;
 
 [assembly: OwinStartup(typeof(NDTuanShop.Web.App_Start.Startup))]
 
 namespace NDTuanShop.Web.App_Start
 {
-    public class Startup
+    public partial class Startup
     {
         public void Configuration(IAppBuilder app)
         {
             ConfigAutofac(app);
+            ConfigureAuth(app);
         }
 
         private void ConfigAutofac(IAppBuilder app)
@@ -36,7 +39,14 @@ namespace NDTuanShop.Web.App_Start
             builder.RegisterType<DbFactory>().As<IDbFactory>().InstancePerRequest();
 
             builder.RegisterType<NDTuanShopDbContext>().AsSelf().InstancePerRequest();
-            
+
+            //Asp.net Identity
+            builder.RegisterType<ApplicationUserStore>().As<IUserStore<ApplicationUser>>().InstancePerRequest();
+            builder.RegisterType<ApplicationUserManager>().AsSelf().InstancePerRequest();
+            builder.RegisterType<ApplicationSignInManager>().AsSelf().InstancePerRequest();
+            builder.Register(c => HttpContext.Current.GetOwinContext().Authentication).InstancePerRequest();
+            builder.Register(c => app.GetDataProtectionProvider()).InstancePerRequest();
+
             // Repositories
             builder.RegisterAssemblyTypes(typeof(PostCategoryRepository).Assembly)
                 .Where(t => t.Name.EndsWith("Repository"))

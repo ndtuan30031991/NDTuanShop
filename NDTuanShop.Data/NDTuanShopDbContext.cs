@@ -1,9 +1,10 @@
-﻿using NDTuanShop.Model.Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using NDTuanShop.Model.Models;
 using System.Data.Entity;
 
 namespace NDTuanShop.Data
 {
-    public class NDTuanShopDbContext : DbContext
+    public class NDTuanShopDbContext : IdentityDbContext<ApplicationUser>
     {
         public NDTuanShopDbContext() : base("NDTuanShopConnection")
         {
@@ -29,9 +30,15 @@ namespace NDTuanShop.Data
         public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
         public DbSet<Error> Errors { set; get; }
 
+        public static NDTuanShopDbContext Create()
+        {
+            return new NDTuanShopDbContext();
+        }
+
         protected override void OnModelCreating(DbModelBuilder builder)
         {
-            //base.OnModelCreating(builder);
+            builder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            builder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
         }
     }
 }

@@ -1,5 +1,8 @@
-namespace NDTuanShop.Data.Migrations
+﻿namespace NDTuanShop.Data.Migrations
 {
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Model.Models;
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
@@ -26,6 +29,30 @@ namespace NDTuanShop.Data.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new NDTuanShopDbContext()));
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new NDTuanShopDbContext()));
+
+            var user = new ApplicationUser()
+            {
+                UserName = "ndtuan",
+                Email = "nguyendinhtuan1991@gmail.com",
+                EmailConfirmed = true,
+                BirthDay = DateTime.Now,
+                FullName = "Nguyễn Đình Tuân",
+            };
+
+            manager.Create(user, "123");
+
+            if (!roleManager.Roles.Any())
+            {
+                roleManager.Create(new IdentityRole { Name = "Admin" });
+                roleManager.Create(new IdentityRole { Name = "User" });
+            }
+
+            var adminUser = manager.FindByEmail("nguyendinhtuan1991@gmail.com");
+
+            manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
         }
     }
 }
