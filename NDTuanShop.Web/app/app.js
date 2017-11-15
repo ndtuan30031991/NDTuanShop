@@ -1,6 +1,10 @@
 ﻿/// <reference path="~/Assets/admin/libs/angular/angular.js" />
 (function() {
-    angular.module('ndtuanshop', ['ndtuanshop.products', 'ndtuanshop.common']).config(config);
+    angular.module('ndtuanshop',
+        ['ndtuanshop.products',
+         'ndtuanshop.product_categories',
+         'ndtuanshop.common'])
+        .config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 

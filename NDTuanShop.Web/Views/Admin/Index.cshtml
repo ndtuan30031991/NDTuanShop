@@ -221,6 +221,7 @@
                         <ul class="treeview-menu">
                             <li><a ui-sref="products"><i class="fa fa-circle-o"></i> Products</a></li>
                             <li><a ui-sref="product_add"><i class="fa fa-circle-o"></i> Add Products</a></li>
+                            <li><a ui-sref="product_categories"><i class="fa fa-circle-o"></i> Product Categories</a></li>
                         </ul>
                     </li>
                     <li class="treeview">
@@ -590,8 +591,13 @@
     <script src="~/Assets/admin/libs/angular/angular.js"></script>
     <script src="~/Assets/admin/libs/angular-ui-router/release/angular-ui-router.js"></script>
     <script src="~/app/shared/modules/ndtuanshop.common.js"></script>
+    <script src="~/app/shared/filters/statusFilters.js"></script>
+    <script src="~/app/shared/services/appService.js"></script>
+    <script src="~/app/shared/directives/pagerDirective.js"></script>
     <script src="~/app/components/products/products.module.js"></script>
+    <script src="~/app/components/product_categories/productCategory.module.js"></script>
     <script src="~/app/app.js"></script>
+    <script src="~/app/components/product_categories/productCategoryListController.js"></script>
     <script src="~/app/components/products/productAddController.js"></script>
     <script src="~/app/components/products/productListController.js"></script>
     <script src="~/app/components/home/homeController.js"></script>
