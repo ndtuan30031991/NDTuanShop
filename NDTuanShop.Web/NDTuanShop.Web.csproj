@@ -249,6 +249,7 @@
     <Content Include="Assets\admin\css\alt\AdminLTE-select2.min.css" />
     <Content Include="Assets\admin\css\alt\AdminLTE-without-plugins.css" />
     <Content Include="Assets\admin\css\alt\AdminLTE-without-plugins.min.css" />
+    <Content Include="Assets\admin\css\custom.css" />
     <Content Include="Assets\admin\css\skins\skin-black-light.css" />
     <Content Include="Assets\admin\css\skins\skin-black-light.min.css" />
     <Content Include="Assets\admin\css\skins\skin-black.css" />
@@ -544,10 +545,6 @@
     <Content Include="Assets\admin\libs\angular\LICENSE.md" />
     <Content Include="Assets\admin\libs\angular\package.json" />
     <Content Include="Assets\admin\libs\angular\README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Assets\admin\css\adminlte.css.map" />
-    <Content Include="Assets\admin\css\adminlte.min.css.map" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\admin\libs\bootstrap\.bower.json" />
