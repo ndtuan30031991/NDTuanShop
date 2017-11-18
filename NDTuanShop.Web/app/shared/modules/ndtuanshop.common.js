@@ -1,3 +1,3 @@
 ﻿(function () {
-    angular.module('ndtuanshop.common', ['ui.router', 'ngBootbox'])
+    angular.module('ndtuanshop.common', ['ui.router', 'ngBootbox', 'ngCkeditor'])
 })();
