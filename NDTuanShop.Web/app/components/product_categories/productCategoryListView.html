@@ -38,6 +38,7 @@
                 </div>
                 <div class="col-md-6">
                     <button class="btn btn-success" ui-sref="add_product_category">Thêm Mới</button>
+                    <button class="btn btn-danger" ng-click="deleteMultiple()" id="btnDelete" disabled>Xóa Tất Cả</button>
                 </div>
             </div>
             <div class="row">
@@ -45,6 +46,7 @@
                     <!-- /.box-header -->
                         <table class="table table-bordered">
                             <tr>
+                                <th><label><input name="all" type="checkbox" ng-click="selectAll()" /></label></th>
                                 <th>ID</th>
                                 <th>Tên Danh Mục</th>
                                 <th>Ngày Tạo</th>
@@ -52,6 +54,7 @@
                                 <th>Thao Tác</th>
                             </tr>
                             <tr ng-repeat="item in productCategories">
+                                <td><input name="all" type="checkbox" ng-model="item.checked" /></td>
                                 <td>{{item.ID}}</td>
                                 <td>{{item.Name}}</td>
                                 <td>{{item.CreatedDate | date:'dd/MM/yyyy hh:mm:ss'}}</td>
