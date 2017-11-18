@@ -2,6 +2,7 @@
 	"name": "asp.net",
 	"private": true,
   "dependencies": {
-    "toastr": "~2.1.2"
+    "bootbox": "~4.4.0",
+    "ngBootbox": "~0.1.3"
   }
 }
