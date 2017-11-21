@@ -12,6 +12,7 @@ using NDTuanShop.Web.Infrastructure.Extensions;
 namespace NDTuanShop.Web.Api
 {
     [RoutePrefix("api/postcategory")]
+    [Authorize]
     public class PostCategoryController : ApiControllerBase
     {
         IPostCategoryService _postCategoryService;

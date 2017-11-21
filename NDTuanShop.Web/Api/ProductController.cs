@@ -15,6 +15,7 @@ using System.Web.Script.Serialization;
 namespace NDTuanShop.Web.Api
 {
     [RoutePrefix("api/product")]
+    [Authorize]
     public class ProductController : ApiControllerBase
     {
         private IProductService _productService;
@@ -97,6 +98,7 @@ namespace NDTuanShop.Web.Api
                     var newProduct = new Product();
                     newProduct.UpdateProduct(productVm);
                     newProduct.CreatedDate = DateTime.Now;
+                    newProduct.CreatedBy = User.Identity.Name;
 
                     _productService.Add(newProduct);
                     _productService.Save();
@@ -126,6 +128,7 @@ namespace NDTuanShop.Web.Api
                     var dbProduct = _productService.GetById(productVm.ID);
                     dbProduct.UpdateProduct(productVm);
                     dbProduct.UpdatedDate = DateTime.Now;
+                    dbProduct.CreatedBy = User.Identity.Name;
 
                     _productService.Update(dbProduct);
                     _productService.Save();

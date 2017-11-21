@@ -15,6 +15,7 @@ using System.Web.Script.Serialization;
 namespace NDTuanShop.Web.Api
 {
     [RoutePrefix("api/productcategory")]
+    [Authorize]
     public class ProductCategoryController : ApiControllerBase
     {
         private IProductCategoryService _productCategoryService;

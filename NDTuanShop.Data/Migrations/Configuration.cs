@@ -30,47 +30,47 @@
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
-            //var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new NDTuanShopDbContext()));
+            var manager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(new NDTuanShopDbContext()));
 
-            //var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new NDTuanShopDbContext()));
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(new NDTuanShopDbContext()));
 
-            //var user = new ApplicationUser()
-            //{
-            //    UserName = "ndtuan",
-            //    Email = "nguyendinhtuan1991@gmail.com",
-            //    EmailConfirmed = true,
-            //    BirthDay = DateTime.Now,
-            //    FullName = "Nguyễn Đình Tuân",
-            //};
-
-            //manager.Create(user, "123");
-
-            //if (!roleManager.Roles.Any())
-            //{
-            //    roleManager.Create(new IdentityRole { Name = "Admin" });
-            //    roleManager.Create(new IdentityRole { Name = "User" });
-            //}
-
-            //var adminUser = manager.FindByEmail("nguyendinhtuan1991@gmail.com");
-
-            //manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
-
-            CreateProductCategorySample(context);
-        }
-        private void CreateProductCategorySample(NDTuanShop.Data.NDTuanShopDbContext context)
-        {
-            if(context.ProductCategories.Count() == 0)
+            var user = new ApplicationUser()
             {
-                List<ProductCategory> listProductCategoty = new List<ProductCategory>()
-                {
-                    new ProductCategory() {Name = "Điện lạnh", Alias = "dien-lanh", Status = true },
-                    new ProductCategory() {Name = "Viễn thông", Alias = "vien-thong", Status = true },
-                    new ProductCategory() {Name = "Đồ gia dụng", Alias = "do-gia-dung", Status = true }
-                };
+                UserName = "ndtuan",
+                Email = "nguyendinhtuan1991@gmail.com",
+                EmailConfirmed = true,
+                BirthDay = DateTime.Now,
+                FullName = "Nguyễn Đình Tuân",
+            };
 
-                context.ProductCategories.AddRange(listProductCategoty);
-                context.SaveChanges();
+            manager.Create(user, "123");
+
+            if (!roleManager.Roles.Any())
+            {
+                roleManager.Create(new IdentityRole { Name = "Admin" });
+                roleManager.Create(new IdentityRole { Name = "User" });
             }
+
+            var adminUser = manager.FindByEmail("nguyendinhtuan1991@gmail.com");
+
+            manager.AddToRoles(adminUser.Id, new string[] { "Admin", "User" });
+
+            //CreateProductCategorySample(context);
         }
+        //private void CreateProductCategorySample(NDTuanShop.Data.NDTuanShopDbContext context)
+        //{
+        //    if(context.ProductCategories.Count() == 0)
+        //    {
+        //        List<ProductCategory> listProductCategoty = new List<ProductCategory>()
+        //        {
+        //            new ProductCategory() {Name = "Điện lạnh", Alias = "dien-lanh", Status = true },
+        //            new ProductCategory() {Name = "Viễn thông", Alias = "vien-thong", Status = true },
+        //            new ProductCategory() {Name = "Đồ gia dụng", Alias = "do-gia-dung", Status = true }
+        //        };
+
+        //        context.ProductCategories.AddRange(listProductCategoty);
+        //        context.SaveChanges();
+        //    }
+        //}
     }
 }
