@@ -43,7 +43,7 @@
                 FullName = "Nguyễn Đình Tuân",
             };
 
-            manager.Create(user, "123");
+            manager.Create(user, "123654$");
 
             if (!roleManager.Roles.Any())
             {
